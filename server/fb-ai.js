@@ -48,14 +48,13 @@ function _handleApiAiResponse(sender, response) {
 
 	if (responseText == '' && !isDefined(action)) {
 		console.log(`Unknown query ${response.result.resolvedQuery}`)
-		_sendTextMessage(sender, "I'm not sure what you want. Can you be more specific?")
+		_sendTextMessage(sender, "What are you even talking about?")
 	} else {
 		_sendTextMessage(sender, responseText)
 	}
 }
 
 function _sendTextMessage(recipientId, text) {
-	console.log('_sendTextMessage')
 	const messageData = {
 		recipient: {
 			id: recipientId
