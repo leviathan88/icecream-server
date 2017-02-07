@@ -1,0 +1,30 @@
+{
+  "name": "icecream-server",
+  "version": "0.0.1",
+  "description": "Ice Cream server with Api.AI hooks",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon server/app.js --exec babel-node",
+    "build": "babel server/*.js config.js -d dist",
+    "start": "node ./dist/server/app.js",
+    "test": "test"
+  },
+  "author": "elvis dedic",
+  "license": "ISC",
+  "dependencies": {
+    "apiai": "^4.0.0",
+    "babel-preset-node5": "^12.0.1",
+    "babel-register": "^6.22.0",
+    "body-parser": "^1.16.0",
+    "crypto": "0.0.3",
+    "express": "^4.14.1",
+    "request": "^2.79.0",
+    "uuid": "^3.0.1",
+    "morgan": "^1.7.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-stage-2": "^6.22.0"    
+  }
+}
