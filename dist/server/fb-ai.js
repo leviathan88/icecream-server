@@ -34,15 +34,15 @@ var apiAiService = (0, _apiai2.default)(_config2.default.API_AI_CLIENT_ACCESS_TO
 function receivedMessage(event) {
 	console.log('receivedMessage');
 	var senderID = event.sender.id;
-	var messageText = event.message.text.messageText;
+	var text = event.message.text;
 
 
 	if (!_sessionIds.has(senderID)) {
 		_sessionIds.set(senderID, _uuid2.default.v1());
 	}
 
-	if (messageText) {
-		_sendToApiAi(senderID, messageText);
+	if (text) {
+		_sendToApiAi(senderID, text);
 	}
 }
 

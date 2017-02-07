@@ -14,14 +14,14 @@ const apiAiService = apiai(config.API_AI_CLIENT_ACCESS_TOKEN, {
 export function receivedMessage(event) {
 	console.log('receivedMessage')
 	const senderID = event.sender.id	
-	const { messageText } = event.message.text
+	const { text } = event.message;
 
 	if (!_sessionIds.has(senderID)) {
 		_sessionIds.set(senderID, uuid.v1())
 	}
 
-	if (messageText) {
-		_sendToApiAi(senderID, messageText)
+	if (text) {
+		_sendToApiAi(senderID, text)
 	}
 }
 
