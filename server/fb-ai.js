@@ -12,6 +12,7 @@ const apiAiService = apiai(config.API_AI_CLIENT_ACCESS_TOKEN, {
 });
 
 export function receivedMessage(event) {
+	console.log('receivedMessage')
 	const senderID = event.sender.id	
 	const { messageText } = event.message.text
 
@@ -25,7 +26,7 @@ export function receivedMessage(event) {
 }
 
 function _sendToApiAi(sender, text) {
-
+	console.log('_sendToApiAi')
 	_sendTypingOn(sender)
 	const apiaiRequest = apiAiService.textRequest(text, {
 		sessionId: _sessionIds.get(sender)
@@ -42,6 +43,7 @@ function _sendToApiAi(sender, text) {
 }
 
 function _handleApiAiResponse(sender, response) {
+	console.log('_handleApiAiResponse')
 	let responseText = response.result.fulfillment.speech
 	let action = response.result.action
 
@@ -56,6 +58,7 @@ function _handleApiAiResponse(sender, response) {
 }
 
 function _sendTextMessage(recipientId, text) {
+	console.log('_sendTextMessage')
 	const messageData = {
 		recipient: {
 			id: recipientId
@@ -68,6 +71,7 @@ function _sendTextMessage(recipientId, text) {
 }
 
 function _callSendAPI(messageData) {
+	console.log('_callSendAPI')
 	request({
 		uri: 'https://graph.facebook.com/v2.6/me/messages',
 		qs: {
@@ -93,6 +97,7 @@ function _callSendAPI(messageData) {
 }
 
 function _sendTypingOn(recipientId) {
+	console.log('_sendTypingOn')
 	const messageData = {
 		recipient: {
 			id: recipientId
@@ -104,6 +109,7 @@ function _sendTypingOn(recipientId) {
 }
 
 function _sendTypingOff(recipientId) {
+	console.log('_sendTypingOff')
 	const messageData = {
 		recipient: {
 			id: recipientId
