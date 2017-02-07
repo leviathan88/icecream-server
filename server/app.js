@@ -26,8 +26,10 @@ app.get('/webhook/', (req, res)=> {
 })
 
 app.post('/webhook/', (req, res)=> {	
-	const data = req.body	
+	const data = req.body
+	console.log(JSON.stringify(data))
 	if (data.object == 'page') {
+		console.log('its a page')
 		data.entry.forEach( (pageEntry)=> {
 			pageEntry.messaging.forEach( (messagingEvent)=> {
 				if (messagingEvent.message) {   
