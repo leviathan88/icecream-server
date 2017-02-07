@@ -4,7 +4,7 @@ NodeJS and [Api.AI](https://api.ai/) server
 
 #### to run it locally:
 ```sh
-$ git clone repo
+$ git clone https://github.com/leviathan88/icecream-server.git
 $ cd icecream-server
 $ npm install
 $ npm start (to run latest build)
