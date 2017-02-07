@@ -43,7 +43,6 @@ app.post('/webhook/', function (req, res) {
 	var data = req.body;
 	console.log(JSON.stringify(data));
 	if (data.object == 'page') {
-		console.log('its a page');
 		data.entry.forEach(function (pageEntry) {
 			pageEntry.messaging.forEach(function (messagingEvent) {
 				if (messagingEvent.message) {
