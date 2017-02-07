@@ -32,7 +32,6 @@ var apiAiService = (0, _apiai2.default)(_config2.default.API_AI_CLIENT_ACCESS_TO
 });
 
 function receivedMessage(event) {
-	console.log('receivedMessage');
 	var senderID = event.sender.id;
 	var text = event.message.text;
 
@@ -47,7 +46,6 @@ function receivedMessage(event) {
 }
 
 function _sendToApiAi(sender, text) {
-	console.log('_sendToApiAi');
 	_sendTypingOn(sender);
 	var apiaiRequest = apiAiService.textRequest(text, {
 		sessionId: _sessionIds.get(sender)
@@ -66,14 +64,13 @@ function _sendToApiAi(sender, text) {
 }
 
 function _handleApiAiResponse(sender, response) {
-	console.log('_handleApiAiResponse');
 	var responseText = response.result.fulfillment.speech;
 	var action = response.result.action;
 
 	_sendTypingOff(sender);
 
 	if (responseText == '' && !(0, _utils.isDefined)(action)) {
-		console.log('Unknown query' + response.result.resolvedQuery);
+		console.log('Unknown query ' + response.result.resolvedQuery);
 		_sendTextMessage(sender, "I'm not sure what you want. Can you be more specific?");
 	} else {
 		_sendTextMessage(sender, responseText);
@@ -94,7 +91,6 @@ function _sendTextMessage(recipientId, text) {
 }
 
 function _callSendAPI(messageData) {
-	console.log('_callSendAPI');
 	(0, _request2.default)({
 		uri: 'https://graph.facebook.com/v2.6/me/messages',
 		qs: {
@@ -109,7 +105,7 @@ function _callSendAPI(messageData) {
 			var messageId = body.message_id;
 
 			if (messageId) {
-				console.log('Successfully sent message with id %s to recipient ' + messageId + ' ' + recipientId);
+				console.log('Successfully sent message with id ' + messageId + ' to recipient  ' + recipientId);
 			} else {
 				console.log('Successfully called Send API for recipient ' + recipientId);
 			}
@@ -120,7 +116,6 @@ function _callSendAPI(messageData) {
 }
 
 function _sendTypingOn(recipientId) {
-	console.log('_sendTypingOn');
 	var messageData = {
 		recipient: {
 			id: recipientId
@@ -132,7 +127,6 @@ function _sendTypingOn(recipientId) {
 }
 
 function _sendTypingOff(recipientId) {
-	console.log('_sendTypingOff');
 	var messageData = {
 		recipient: {
 			id: recipientId
